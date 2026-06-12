@@ -1655,7 +1655,6 @@ let userProgress = {
   activityData: {}, // date-string -> count (e.g. "2026-06-05" -> 3)
 };
 
-applySavedTheme();
 
 // ===== QUIZ EDITOR (state) =====
 // Declared early to avoid TDZ issues when referenced by event handlers.
@@ -1663,6 +1662,9 @@ let currentProblem = null;
 
 // ===== INITIALIZATION =====
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Apply saved theme only after DOM is ready to avoid touching document.body too early
+  applySavedTheme();
 
   loadUserData();
   initLoadingScreen();
