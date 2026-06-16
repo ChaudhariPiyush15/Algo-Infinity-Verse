@@ -208,7 +208,6 @@ function initDarkMode() {
   const isLight = localStorage.getItem('darkMode') === 'light';
   document.body.classList.toggle('light-mode', isLight);
 }
-}
 
 // ===== MAIN IEP LOGIC =====
 function initIEP() {
