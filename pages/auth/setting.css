@@ -56,7 +56,7 @@ input{
     padding:15px;
     border:none;
     border-radius:10px;
-    background:`#151932`;
+    background:#151932;
     color:white;
     margin-bottom:15px;
     outline: 2px solid transparent;
@@ -64,7 +64,7 @@ input{
 }
 
 input:focus-visible{
-    outline-color:`#8a63ff`;
+    outline-color:#8a63ff;
 }
 
 input::placeholder{
