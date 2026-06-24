@@ -439,13 +439,23 @@
   <span class="btn-spinner"></span>
   <span>${mode === "login" ? "Logging in..." : "Signing up..."}</span>
 `;
-      setFormMessage(form, "Working...", "info");
+     setFormMessage(form, "Working...", "info");
 
       try {
+        // --- 1. FETCH CSRF TOKEN FIRST ---
+        const csrfResponse = await fetch('/api/csrf-token');
+        if (!csrfResponse.ok) throw new Error("Failed to initialize secure session.");
+        const { csrfToken } = await csrfResponse.json();
+        // ---------------------------------
+
+        // --- 2. INJECT TOKEN INTO HEADERS ---
         const response = await fetch(`/api/${mode}`, {
           method: "POST",
           credentials: "include",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "x-csrf-token": csrfToken // <-- New Header Added
+          },
           body: JSON.stringify(dataObj),
         });
 
